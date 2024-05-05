@@ -95,7 +95,7 @@ class _SignupScreenState extends State<SignupScreen> {
           GestureDetector(
             onTap: widget.show,
             child: Text(
-              '로그인 ',
+              '로그인',
               style: TextStyle(fontSize: 13.sp, color: Colors.blue),
             ),
           ),

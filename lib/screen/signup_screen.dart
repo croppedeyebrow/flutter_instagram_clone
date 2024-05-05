@@ -1,4 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_instagram_clone/data/firebase_service/firebase_auth.dart';
+import 'package:flutter_instagram_clone/util/dialog.dart';
+import 'package:flutter_instagram_clone/util/exception.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -104,15 +109,24 @@ class _SignupScreenState extends State<SignupScreen> {
     );
   }
 
-// 로그인 버튼 위젯
+// 회원가입 버튼 위젯
   Widget Signup() {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10.w),
       child: InkWell(
-        // onTap: () async {
-        //   await Authentication()
-        //       .Login(email: email.text, password: password.text);
-        // },
+        onTap: () async {
+          try {
+            await Authentication().Signup(
+                email: email.text,
+                password: password.text,
+                passwordConfirm: passwordConfirm.text,
+                username: username.text,
+                bio: bio.text,
+                profile: File(''));
+          } on exceptions catch (e) {
+            dialogBuilder(context, e.massage);
+          }
+        },
         child: Container(
           alignment: Alignment.center,
           width: double.infinity,

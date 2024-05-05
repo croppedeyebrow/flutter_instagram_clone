@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class SignupScreen extends StatefulWidget {
   final VoidCallback show;
+
   SignupScreen(this.show, {super.key});
 
   @override
@@ -17,6 +18,19 @@ class _SignupScreenState extends State<SignupScreen> {
   // 비밀번호 입력 컨트롤러
   final password = TextEditingController();
   FocusNode password_F = FocusNode();
+
+  // 성별 입력 컨트롤러
+  final bio = TextEditingController();
+  FocusNode bio_F = FocusNode();
+
+  // 이름 입력 컨트롤러
+  final username = TextEditingController();
+  FocusNode username_F = FocusNode();
+
+  // 비밀번호 확인 컨트롤러
+  final passwordConfirm = TextEditingController();
+  FocusNode passwordConfirm_F = FocusNode();
+
   @override
   void dispose() {
     // TODO: implement dispose
@@ -32,19 +46,29 @@ class _SignupScreenState extends State<SignupScreen> {
       body: SafeArea(
         child: Column(
           children: [
-            SizedBox(width: 96.w, height: 100.h),
+            SizedBox(width: 96.w, height: 40.h),
             Center(
               child: Image.asset('assets/images/logo.jpg'),
             ),
-            SizedBox(height: 120.h),
+            SizedBox(height: 60.h),
+            CircleAvatar(
+              radius: 38.r,
+              backgroundColor: Colors.grey.shade300,
+              backgroundImage: AssetImage('assets/images/person.png'),
+            ),
+            SizedBox(height: 50.h),
             Textfild(email, email_F, '이메일을 입력해주세요', Icons.email),
-            SizedBox(height: 15.h),
-            Textfild(password, password_F, '패스워드', Icons.lock),
-            SizedBox(height: 15.h),
-            forget(),
-            SizedBox(height: 15.h),
-            login(),
-            SizedBox(height: 15.h),
+            SizedBox(height: 16.h),
+            Textfild(username, username_F, '이름', Icons.person_2),
+            SizedBox(height: 16.h),
+            Textfild(bio, bio_F, '성별', Icons.abc),
+            SizedBox(height: 16.h),
+            Textfild(password, password_F, '비밀번호', Icons.lock),
+            SizedBox(height: 16.h),
+            Textfild(passwordConfirm, passwordConfirm_F, '비밀번호 확인', Icons.lock),
+            SizedBox(height: 20.h),
+            Signup(),
+            SizedBox(height: 16.h),
             Have()
           ],
         ),
@@ -62,7 +86,7 @@ class _SignupScreenState extends State<SignupScreen> {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            '아직 계정이 없으신가요?',
+            '이미 저희와 함께하고 계신가요?',
             style: TextStyle(fontSize: 13.sp, color: Colors.blueGrey),
           ),
           SizedBox(
@@ -71,7 +95,7 @@ class _SignupScreenState extends State<SignupScreen> {
           GestureDetector(
             onTap: widget.show,
             child: Text(
-              '회원가입',
+              '로그인',
               style: TextStyle(fontSize: 13.sp, color: Colors.blue),
             ),
           ),
@@ -81,7 +105,7 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
 // 로그인 버튼 위젯
-  Widget login() {
+  Widget Signup() {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 10.w),
       child: InkWell(
@@ -98,7 +122,7 @@ class _SignupScreenState extends State<SignupScreen> {
             borderRadius: BorderRadius.circular(10.r),
           ),
           child: Text(
-            'Login',
+            'Sign up',
             style: TextStyle(
               fontSize: 23.sp,
               color: Colors.white,

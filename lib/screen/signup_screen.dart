@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_instagram_clone/data/firebase_service/firebase_auth.dart';
 import 'package:flutter_instagram_clone/util/dialog.dart';
 import 'package:flutter_instagram_clone/util/exception.dart';
+import 'package:flutter_instagram_clone/util/imagepicker.dart';
 
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -36,6 +37,9 @@ class _SignupScreenState extends State<SignupScreen> {
   final passwordConfirm = TextEditingController();
   FocusNode passwordConfirm_F = FocusNode();
 
+  // 이미지 파일 변수
+  File _imageFile = File('');
+
   @override
   void dispose() {
     // TODO: implement dispose
@@ -56,10 +60,31 @@ class _SignupScreenState extends State<SignupScreen> {
               child: Image.asset('assets/images/logo.jpg'),
             ),
             SizedBox(height: 60.h),
-            CircleAvatar(
-              radius: 38.r,
-              backgroundColor: Colors.grey.shade300,
-              backgroundImage: AssetImage('assets/images/person.png'),
+            InkWell(
+              onTap: () async {
+                File _imagefilee = await ImagePickerr().uploadImage('gallery');
+                setState(() {
+                  _imageFile = _imagefilee;
+                });
+              },
+              child: CircleAvatar(
+                radius: 42.r,
+                backgroundColor: Colors.black54,
+                child: _imageFile == null
+                    ? CircleAvatar(
+                        radius: 38.r,
+                        backgroundColor: Colors.grey.shade200,
+                        backgroundImage: AssetImage('assets/images/person.png'),
+                      )
+                    : CircleAvatar(
+                        radius: 38.r,
+                        backgroundColor: Colors.grey.shade200,
+                        backgroundImage: Image.file(
+                          _imageFile!,
+                          fit: BoxFit.cover,
+                        ).image,
+                      ),
+              ),
             ),
             SizedBox(height: 50.h),
             Textfild(email, email_F, '이메일을 입력해주세요', Icons.email),

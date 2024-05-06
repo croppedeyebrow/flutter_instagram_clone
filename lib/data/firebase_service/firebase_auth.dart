@@ -42,7 +42,7 @@ class Authentication {
             username: username,
             bio: bio,
             profile: URL == ''
-                ? 'https://firebasestorage.googleapis.com/v0/b/flutter-instagram-clone-1b7b9.appspot.com/o/Profile%2Fdefault.png?alt=media&token=3b3b3b3b-3b3b-3b3b-3b3b-3b3b3b3b3b3b'
+                ? 'https://firebasestorage.googleapis.com/v0/b/instagramclone-a91d0.appspot.com/o/%EA%B0%9C%EB%B0%9C%EC%9D%B8%EC%8A%A4%ED%83%80%EA%B3%84%EC%A0%95%20%ED%94%84%EB%A1%9C%ED%95%84.png?alt=media&token=7e9b1cd5-7ba1-4230-aa75-302b663787c3'
                 : URL,
           );
         } else {
